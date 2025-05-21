@@ -25,7 +25,6 @@ const Menu = () => {
         <div>
             <Helmet>
                 <title>Bistro Boss  || Our Menu </title>
-
             </Helmet>
             <Cover image={img} tittle={"our menu"}  ></Cover>
             <section>
@@ -35,23 +34,22 @@ const Menu = () => {
                 />
             </section>
             {/* offers menu items */}
-            <MenuCategory items={offered} btnName={"ORDER YOUR FAVOURITE FOOD"}></MenuCategory>
+            <MenuCategory items={offered} ></MenuCategory>
 
             {/* deserts items  */}
-            <Cover image={dessertImg} tittle={"dessert"}  ></Cover>
-            <MenuCategory items={dessert} btnName={"ORDER YOUR FAVOURITE FOOD"}></MenuCategory>
+            <MenuCategory items={dessert} image={dessertImg} title={"dessert"} ></MenuCategory>
 
             {/* pizza items  */}
-            <Cover image={pizzaImg} tittle={"pizza"}  ></Cover>
-            <MenuCategory items={pizza} btnName={"ORDER YOUR FAVOURITE FOOD"}></MenuCategory>
+            
+            <MenuCategory items={pizza} image={pizzaImg} title={"pizza"} ></MenuCategory>
 
             {/* salad items  */}
-            <Cover image={saladImg} tittle={"salad"}  ></Cover>
-            <MenuCategory items={salad} btnName={"ORDER YOUR FAVOURITE FOOD"}></MenuCategory>
+            
+            <MenuCategory items={salad} image={saladImg} title={"salad"} ></MenuCategory>
 
             {/* soup items  */}
-            <Cover image={soupImg} tittle={"soup"}  ></Cover>
-            <MenuCategory items={soup} btnName={"ORDER YOUR FAVOURITE FOOD"}></MenuCategory>
+           
+            <MenuCategory items={soup} image={soupImg} title={"soup"} ></MenuCategory>
 
 
 
