@@ -7,25 +7,43 @@ import { useState } from 'react';
 import FoodCard from '../../Shared/FoodCard/FoodCard';
 import useMenu from '../../../Hooks/useMenu';
 import { useParams } from 'react-router-dom';
+import { Vortex } from 'react-loader-spinner';
 
 
 
 const Order = () => {
 
     const categories = ['salad', 'pizza', 'soup', 'dessert', 'drinks'];
-    const {category} = useParams();
+    const { category } = useParams();
     const initialIndex = categories.indexOf(category);
     const [tabIndex, setTabIndex] = useState(initialIndex)
 
 
-    const [menu] = useMenu();
-    
-
+    const [menu, loading] = useMenu();
     const dessert = menu.filter(item => item.category === 'dessert');
     const pizza = menu.filter(item => item.category === 'pizza');
     const salad = menu.filter(item => item.category === 'salad');
     const soup = menu.filter(item => item.category === 'soup');
     const drinks = menu.filter(item => item.category === 'drinks');
+
+
+    if (loading) {
+        return (
+            <div className=" w-11/12  flex justify-center items-center">
+                <Vortex
+                    visible={true}
+                    height="800"
+                    width="100"
+                    ariaLabel="vortex-loading"
+                    wrapperStyle={{}}
+                    wrapperClass="vortex-wrapper"
+                    colors={['red', 'green', 'blue', 'yellow', 'orange', 'purple']}
+                />
+            </div>
+        );
+    }
+
+
 
     return (
         <div>
@@ -78,7 +96,7 @@ const Order = () => {
                     <TabPanel>
                         <div className="flex flex-wrap justify-center gap-10 px-4">
                             {
-                                
+
                                 soup.map(item => (
                                     <FoodCard key={item._id} item={item} />
                                 ))
@@ -90,7 +108,7 @@ const Order = () => {
                     <TabPanel>
                         <div className="flex flex-wrap justify-center gap-10 px-4">
                             {
-                                
+
                                 drinks.map(item => (
                                     <FoodCard key={item._id} item={item} />
                                 ))
@@ -99,7 +117,7 @@ const Order = () => {
 
                     </TabPanel>
 
-                    
+
                 </Tabs>
             </div>
         </div>

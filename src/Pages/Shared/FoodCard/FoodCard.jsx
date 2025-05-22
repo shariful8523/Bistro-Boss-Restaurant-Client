@@ -1,6 +1,7 @@
 const FoodCard = ({ item }) => {
     const { name, image, price, recipe } = item;
     
+    
     return (
         <div className="card bg-base-100 w-96 shadow-sm mb-10 relative">
           

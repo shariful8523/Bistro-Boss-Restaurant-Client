@@ -9,7 +9,7 @@ const Cover = ({image , tittle}) => {
                         `url("${image}")`,
                 }}
             >
-                <div className="hero-overlay  "></div>
+                <div className="  "></div>
                 <div className="hero-content text-neutral-content text-center bg-[#15151599] p-20 px-50 ">
                     <div className="max-w-md">
                         <h1 className="mb-5 text-5xl font-bold uppercase">{tittle}</h1>
