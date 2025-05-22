@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 const Login = () => {
 
 
-    const { loginUser } = useContext(AuthContext);
+    const { loginUser, setJustRegister, googleLogIn } = useContext(AuthContext);
     const navigate = useNavigate();
 
 
@@ -23,6 +23,7 @@ const Login = () => {
 
         loginUser(email, password)
             .then(() => {
+                setJustRegister(false);
                 Swal.fire({
                     title: 'Success!',
                     text: 'logIn Successfully',
@@ -32,20 +33,35 @@ const Login = () => {
                 navigate('/')
             })
 
-            .catch(() => {
-                Swal.fire({
-                    title: 'Error!',
-                    text: 'Email Or password wrong',
-                    icon: 'error',
-                    confirmButtonText: 'Okay'
-                });
-
-            });
+            
 
 
     }
 
+    const handeleGoogle = () => {
+        googleLogIn()
 
+            .then((result) => {
+                console.log(result)
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Login  Successfully',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                });
+
+                navigate('/')
+            })
+            .catch((error) => {
+                console.log(error)
+                Swal.fire({
+                    title: 'Error!',
+                    text: error.message,
+                    icon: 'error',
+                    confirmButtonText: 'Okay'
+                });
+            })
+    }
 
 
 
@@ -103,7 +119,7 @@ const Login = () => {
                         <div className="divider">Or sign up with</div>
                         <div className="flex justify-center space-x-4 text-xl">
                             <button className="btn btn-outline rounded-full p-3"><FaFacebookF /></button>
-                            <button className="btn btn-outline rounded-full p-3"><FaGoogle /></button>
+                            <button onClick={handeleGoogle} className="btn btn-outline rounded-full p-3"><FaGoogle /></button>
                             <button className="btn btn-outline rounded-full p-3"><FaGithub /></button>
                         </div>
                     </form>

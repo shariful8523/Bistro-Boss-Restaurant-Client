@@ -6,18 +6,15 @@ import Img1 from '../../../assets/others/authentication.png'
 import { AuthContext } from '../../../provider/AuthProvider';
 import Swal from 'sweetalert2';
 import { updateProfile } from 'firebase/auth';
-import { getAuth } from "firebase/auth";
-import { app } from '../../../firebase/firebase.config'
 
 
 
 
-const auth = getAuth(app);
 
 const Register = () => {
 
-    const { createUser, logOutUser } = useContext(AuthContext);
-     const navigate = useNavigate();
+    const { createUser, logOutUser, setJustRegister, googleLogIn } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handelRegister = (e) => {
         e.preventDefault();
@@ -49,15 +46,18 @@ const Register = () => {
                             confirmButtonText: 'Cool'
                         });
 
-                      logOutUser(auth)
-                      .then(()=>{
 
-                      })
+                        setJustRegister(true);
+
+                        logOutUser()
+                            .then(() => {
+
+                            })
 
 
-                      e.target.reset();
+                        e.target.reset();
 
-                      navigate('/login')
+                        navigate('/login')
 
 
                     })
@@ -68,6 +68,32 @@ const Register = () => {
             }))
 
     };
+
+
+    const handeleGoogle = () => {
+        googleLogIn()
+
+            .then((result) => {
+                console.log(result)
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Login  Successfully',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                });
+
+                navigate('/')
+            })
+            .catch((error) => {
+                console.log(error)
+                Swal.fire({
+                    title: 'Error!',
+                    text: error.message,
+                    icon: 'error',
+                    confirmButtonText: 'Okay'
+                });
+            })
+    }
 
 
     return (
@@ -123,7 +149,7 @@ const Register = () => {
                         <div className="divider">Or sign up with</div>
                         <div className="flex justify-center space-x-4 text-xl ">
                             <button className="btn btn-outline rounded-full p-3"><FaFacebookF /></button>
-                            <button className="btn btn-outline rounded-full p-3"><FaGoogle /></button>
+                            <button onClick={handeleGoogle} className="btn btn-outline rounded-full p-3"><FaGoogle /></button>
                             <button className="btn btn-outline rounded-full p-3"><FaGithub /></button>
                         </div>
                     </form>

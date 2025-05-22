@@ -1,11 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../provider/AuthProvider';
 import Swal from 'sweetalert2';
-
+import Man from '../../../assets/others/profile.png'
 const Navbar = () => {
 
-    const { user, logOutUser } = useContext(AuthContext);
+    const { user, logOutUser, justRegister } = useContext(AuthContext);
+    const [dropdown, setDropdown] = useState(false);
+
+
 
 
     const handelLogOut = () => {
@@ -55,10 +58,45 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end gap-7">
                     {
-                        user ?
-
+                        user && !justRegister ?
                             (
-                                <button onClick={handelLogOut} className='btn'>log Out</button>
+                                <div className='relative'>
+
+                                    <button onClick={() => setDropdown(!dropdown)} className=" flex items-center gap-2 focus:outline-none  ">
+                                        {
+                                            user.photoURL ?
+                                                (
+                                                    <img
+                                                        src={user.photoURL}
+                                                        alt="User"
+                                                        className="w-10 h-10 rounded-full border-2 border-white"
+                                                    />
+                                                )
+                                                :
+                                                (
+                                                    <img className='w-10 rounded-full' src={Man} alt="" />
+                                                )
+                                        }
+                                    </button>
+                                    {
+                                        dropdown && (
+                                            <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg z-20">
+                                                <div className="px-4 py-2 border-b border-gray-200">
+                                                    <p className="font-medium">{user.displayName || 'User'}</p>
+                                                    <p className="text-sm text-gray-600">{user.email}</p>
+                                                </div>
+                                                <button
+                                                    onClick={handelLogOut}
+                                                    className=" w-full text-left px-4 py-2 hover:bg-red-600 "
+                                                >
+                                                    Log Out
+                                                </button>
+                                            </div>
+                                        )
+                                    }
+                                </div>
+
+
                             )
                             :
 
