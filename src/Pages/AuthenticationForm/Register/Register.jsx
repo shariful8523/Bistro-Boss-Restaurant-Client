@@ -1,15 +1,23 @@
 import React, { useContext } from 'react';
 import img from '../../../assets/others/ar.png';
 import { FaFacebookF, FaGoogle, FaGithub } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Img1 from '../../../assets/others/authentication.png'
 import { AuthContext } from '../../../provider/AuthProvider';
 import Swal from 'sweetalert2';
+import { updateProfile } from 'firebase/auth';
+import { getAuth } from "firebase/auth";
+import { app } from '../../../firebase/firebase.config'
+
+
+
+
+const auth = getAuth(app);
 
 const Register = () => {
 
-    const { createUser } = useContext(AuthContext);
-
+    const { createUser, logOutUser } = useContext(AuthContext);
+     const navigate = useNavigate();
 
     const handelRegister = (e) => {
         e.preventDefault();
@@ -22,13 +30,38 @@ const Register = () => {
 
 
         createUser(email, password)
-            .then(result => {
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'Registration Successfully',
-                    icon: 'success',
-                    confirmButtonText: 'Cool'
-                });
+            .then((result) => {
+
+                const user = result.user;
+
+                // update profile
+
+                updateProfile(user, {
+                    displayName: name,
+                })
+                    .then(() => {
+
+
+                        Swal.fire({
+                            title: 'Success!',
+                            text: 'Registration Successfully',
+                            icon: 'success',
+                            confirmButtonText: 'Cool'
+                        });
+
+                      logOutUser(auth)
+                      .then(()=>{
+
+                      })
+
+
+                      e.target.reset();
+
+                      navigate('/login')
+
+
+                    })
+
             })
             .catch((error => {
                 console.log(error.message)
