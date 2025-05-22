@@ -1,17 +1,35 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../../../provider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
 
+    const { user, logOutUser } = useContext(AuthContext);
+
+
+    const handelLogOut = () => {
+        logOutUser()
+            .then(() => {
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'LogOut Successfully',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                });
+            })
+
+    }
+
     const navOption =
-     <>
-     <li> <Link to={"/"}>Home</Link>  </li>
-     <li> <Link to={"/menu"}>Our Menu</Link>  </li>
-     <li> <Link to={"/order/salad"}>Order Food </Link>  </li>
-     <li> <Link to={"/Contact"}>Contact Us</Link>  </li>
+        <>
+            <li> <Link to={"/"}>Home</Link>  </li>
+            <li> <Link to={"/menu"}>Our Menu</Link>  </li>
+            <li> <Link to={"/order/salad"}>Order Food </Link>  </li>
+            <li> <Link to={"/Contact"}>Contact Us</Link>  </li>
 
 
-    </>
+        </>
     return (
         <div>
             <div className="navbar fixed z-10 bg-opacity-10	 max-w-screen-xl mx-auto bg-[#15151580] text-white ">
@@ -35,8 +53,21 @@ const Navbar = () => {
                         {navOption}
                     </ul>
                 </div>
-                <div className="navbar-end">
-                    <a className="btn">Button</a>
+                <div className="navbar-end gap-7">
+                    {
+                        user ?
+
+                            (
+                                <button onClick={handelLogOut} className='btn'>log Out</button>
+                            )
+                            :
+
+                            (<>
+                                <NavLink to={'/login'}> <button className='btn'>Login</button></NavLink>
+
+                                <NavLink to={'/register'}> <button className='btn'>Sing Up</button></NavLink>
+                            </>)
+                    }
                 </div>
             </div>
         </div>

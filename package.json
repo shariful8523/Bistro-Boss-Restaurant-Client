@@ -13,6 +13,8 @@
     "@smastrom/react-rating": "^1.5.0",
     "@tailwindcss/vite": "^4.1.7",
     "daisyui": "^5.0.35",
+    "dotenv": "^16.5.0",
+    "firebase": "^11.8.1",
     "localforage": "^1.10.0",
     "match-sorter": "^8.0.1",
     "react": "^19.1.0",
@@ -25,6 +27,7 @@
     "react-router-dom": "^7.6.0",
     "react-tabs": "^6.1.0",
     "sort-by": "^1.2.0",
+    "sweetalert2": "^11.21.2",
     "swiper": "^11.2.7",
     "tailwindcss": "^4.1.7"
   },
