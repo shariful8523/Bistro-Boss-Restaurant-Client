@@ -9,15 +9,30 @@ import dessertImg from '../../../assets/menu/dessert-bg.jpeg'
 import pizzaImg from '../../../assets/menu/pizza-bg.jpg'
 import saladImg from '../../../assets/menu/salad-bg.jpg'
 import soupImg from '../../../assets/menu/soup-bg.jpg'
+import { Vortex } from 'react-loader-spinner';
 
 
 const Menu = () => {
-    const [menu] = useMenu();
+    const [menu , loading] = useMenu();
     const offered = menu.filter(item => item.category === 'offered');
     const dessert = menu.filter(item => item.category === 'dessert');
     const pizza = menu.filter(item => item.category === 'pizza');
     const salad = menu.filter(item => item.category === 'salad');
     const soup = menu.filter(item => item.category === 'soup');
+
+    if (loading) {
+        return <div className=" w-11/12  flex justify-center items-center">
+            <Vortex
+                visible={true}
+                height="800"
+                width="100"
+                ariaLabel="vortex-loading"
+                wrapperStyle={{}}
+                wrapperClass="vortex-wrapper"
+                colors={['red', 'green', 'blue', 'yellow', 'orange', 'purple']}
+            />
+        </div>
+    }
 
     return (
 
@@ -40,15 +55,15 @@ const Menu = () => {
             <MenuCategory items={dessert} image={dessertImg} title={"dessert"} ></MenuCategory>
 
             {/* pizza items  */}
-            
+
             <MenuCategory items={pizza} image={pizzaImg} title={"pizza"} ></MenuCategory>
 
             {/* salad items  */}
-            
+
             <MenuCategory items={salad} image={saladImg} title={"salad"} ></MenuCategory>
 
             {/* soup items  */}
-           
+
             <MenuCategory items={soup} image={soupImg} title={"soup"} ></MenuCategory>
 
 

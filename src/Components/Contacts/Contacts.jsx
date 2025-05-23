@@ -5,6 +5,7 @@ import SectionTittle from "../SectionTittle";
 import { FaPhoneVolume } from "react-icons/fa6";
 import { MdAccessTime } from "react-icons/md";
 import { FaTelegramPlane } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -12,6 +13,9 @@ const Contacts = () => {
 
     return (
         <div className="mt-5 mb-15   ">
+            <Helmet>
+                <title>Bistro Boss  || Contact Us </title>
+            </Helmet>
             <Cover image={Img} tittle={"CONTACT US"}  ></Cover>
             <SectionTittle subHeading={"Visit Us"} heading={"OUR LOCATION"} />
 
@@ -82,7 +86,7 @@ const Contacts = () => {
             <div className="mt-20">
                 <div className="max-w-4xl mx-auto p-10 bg-gray-100">
                     <form className="space-y-6">
-                       
+
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-sm font-medium mb-1">Name*</label>
@@ -102,7 +106,7 @@ const Contacts = () => {
                             </div>
                         </div>
 
-                    
+
                         <div>
                             <label className="block text-sm font-medium mb-1">Phone*</label>
                             <input
@@ -112,7 +116,7 @@ const Contacts = () => {
                             />
                         </div>
 
-                      
+
                         <div>
                             <label className="block text-sm font-medium mb-1">Message*</label>
                             <textarea
@@ -122,19 +126,19 @@ const Contacts = () => {
                             ></textarea>
                         </div>
 
-                
+
                         <div className="border border-gray-300 p-2 inline-block rounded-md">
                             <p className="text-sm text-gray-500">[ reCAPTCHA goes here ]</p>
                         </div>
 
-                      
+
                         <div>
                             <button
                                 type="submit"
                                 className="bg-yellow-600 text-white px-6 py-2 rounded-md hover:bg-yellow-700 transition font-semibold flex items-center gap-2"
                             >
                                 Send Message <FaTelegramPlane />
-                                
+
                             </button>
                         </div>
                     </form>

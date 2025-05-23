@@ -1,16 +1,20 @@
 import React, { useContext } from 'react';
 import img from '../../../assets/others/ar.png';
 import { FaFacebookF, FaGoogle, FaGithub } from "react-icons/fa";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Img1 from '../../../assets/others/authentication.png';
 import { AuthContext } from '../../../provider/AuthProvider';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const Login = () => {
 
 
     const { loginUser, setJustRegister, googleLogIn } = useContext(AuthContext);
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
 
 
     const handelLogin = (e) => {
@@ -30,10 +34,10 @@ const Login = () => {
                     icon: 'success',
                     confirmButtonText: 'Cool'
                 });
-                navigate('/')
+               navigate(from, {replace: true});
             })
 
-            
+
 
 
     }
@@ -72,6 +76,11 @@ const Login = () => {
             className="min-h-screen flex items-center justify-center bg-base-200 px-4"
             style={{ backgroundImage: `url(${Img1})` }}
         >
+
+            <Helmet>
+                <title>Bistro Boss  || Login </title>
+            </Helmet>
+
             <div
                 className="bg-white rounded-lg shadow-lg max-w-6xl w-full grid lg:grid-cols-2 p-8 lg:p-16 gap-8"
                 style={{ backgroundImage: `url(${Img1})` }}

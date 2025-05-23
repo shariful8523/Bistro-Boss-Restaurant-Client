@@ -6,6 +6,7 @@ import Img1 from '../../../assets/others/authentication.png'
 import { AuthContext } from '../../../provider/AuthProvider';
 import Swal from 'sweetalert2';
 import { updateProfile } from 'firebase/auth';
+import { Helmet } from 'react-helmet-async';
 
 
 
@@ -101,6 +102,12 @@ const Register = () => {
             backgroundImage:
                 `url(${Img1})`,
         }}  >
+
+            <Helmet>
+                <title>Bistro Boss  || Register </title>
+            </Helmet>
+
+
             <div className="bg-white rounded-lg shadow-lg max-w-6xl w-full grid lg:grid-cols-2 p-8 lg:p-16 gap-8" style={{
                 backgroundImage:
                     `url(${Img1})`,
