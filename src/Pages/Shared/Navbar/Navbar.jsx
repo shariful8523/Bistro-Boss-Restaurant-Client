@@ -6,10 +6,13 @@ import Man from '../../../assets/others/profile.png';
 import { ImExit } from 'react-icons/im';
 import { VscAccount } from 'react-icons/vsc';
 import { FaShoppingCart } from 'react-icons/fa';
+import useCart from '../../../Hooks/useCart';
 
 const Navbar = () => {
   const { user, logOutUser, justRegister } = useContext(AuthContext);
   const [dropdown, setDropdown] = useState(false);
+
+  const [cart] = useCart();
 
   useEffect(() => {
     setDropdown(false);
@@ -38,10 +41,10 @@ const Navbar = () => {
       <li><Link to="/order/salad">Order Food</Link></li>
       <li><Link to="/contact">Contact Us</Link></li>
 
-      <li><Link to="/contact">
+      <li><Link >
         <button className=" flex gap-2 items-center">
           <FaShoppingCart className='text-xl '></FaShoppingCart> 
-          <div className="badge badge-sm badge-secondary">+99</div>
+          <div className="badge badge-sm badge-secondary text-black bg-white">+{cart.length}</div>
         </button>
       </Link></li>
 
