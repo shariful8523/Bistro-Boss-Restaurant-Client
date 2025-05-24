@@ -39,9 +39,10 @@ const Navbar = () => {
       <li><Link to="/">Home</Link></li>
       <li><Link to="/menu">Our Menu</Link></li>
       <li><Link to="/order/salad">Order Food</Link></li>
+      <li><Link to="/dashboard">DashBoard</Link></li>
       <li><Link to="/contact">Contact Us</Link></li>
 
-      <li><Link >
+      <li><Link to="/dashboard/cart" >
         <button className=" flex gap-2 items-center">
           <FaShoppingCart className='text-xl '></FaShoppingCart> 
           <div className="badge badge-sm badge-secondary text-black bg-white">+{cart.length}</div>

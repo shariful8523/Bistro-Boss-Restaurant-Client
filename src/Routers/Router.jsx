@@ -8,6 +8,10 @@ import Order from "../Pages/Order/Order/Order";
 import Contacts from "../Components/Contacts/Contacts";
 import Login from "../Pages/AuthenticationForm/Login/Login";
 import Register from "../Pages/AuthenticationForm/Register/Register";
+import PrivaterRoutes from "./PrivateRoutes";
+import Dashboard from "../LayOut/Dashboard";
+import Cart from "../Pages/Dashboard/cart";
+import AddReview from "../Pages/Dashboard/AddReview";
 
 
 
@@ -42,5 +46,19 @@ export const Router = createBrowserRouter([
           element: <Register></Register>,
         }
     ]
+  },
+  {
+     path: 'dashboard',
+     element:  <PrivaterRoutes> <Dashboard></Dashboard> </PrivaterRoutes> ,
+     children: [
+      {
+        path: "cart",
+        element: <Cart></Cart>,
+      },
+      {
+        path: 'reviewsAdd',
+        element: <AddReview></AddReview>,
+      }
+     ]
   },
 ]);
