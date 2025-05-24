@@ -24,11 +24,17 @@ const Dashboard = () => {
 
                     <li><NavLink ><FaWallet /> PAYMENT HISTORY</NavLink></li>
 
-                    <li><NavLink to="/dashboard/cart" className={({ isActive }) =>
-                        isActive ? 'text-white font-bold' : 'text-black'
-                    }><IoCartOutline /> MY CART</NavLink></li>
+                    <li><NavLink to="/dashboard/cart"
+                     className={({ isActive }) =>
+                        isActive ? 'text-white font-bold' : 'text-black' } 
+                        
+                        ><IoCartOutline /> MY CART</NavLink></li>
 
-                    <li><NavLink  to="/dashboard/reviewsAdd" ><TbMessageStar /> ADD REVIEW</NavLink></li>
+                    <li><NavLink   to="/dashboard/reviewsAdd" className={({ isActive }) =>
+                        isActive ? 'text-white font-bold' : 'text-black' } 
+                         >
+
+                    <TbMessageStar /> ADD REVIEW</NavLink></li>
 
                     <li><NavLink ><TbCalendarClock /> MY BOOKING</NavLink></li>
 
