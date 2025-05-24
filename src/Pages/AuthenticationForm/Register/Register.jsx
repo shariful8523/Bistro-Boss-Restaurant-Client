@@ -20,6 +20,7 @@ const Register = () => {
     const handelRegister = (e) => {
         e.preventDefault();
         const name = e.target.Name.value;
+        const photo = e.target.photo.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
 
@@ -36,6 +37,7 @@ const Register = () => {
 
                 updateProfile(user, {
                     displayName: name,
+                    photoURL: photo
                 })
                     .then(() => {
 
@@ -124,6 +126,13 @@ const Register = () => {
                                 <span className="label-text text-base font-semibold">Name</span>
                             </label>
                             <input type="text" name='Name' placeholder="Type here" className="input input-bordered w-full" />
+                        </div>
+                        {/* photo url */}
+                        <div>
+                            <label className="label">
+                                <span className="label-text text-base font-semibold">Photo URL</span>
+                            </label>
+                            <input type="text" name='photo' placeholder="Enter photo URL" className="input input-bordered w-full" />
                         </div>
 
                         {/* Email */}

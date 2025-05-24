@@ -8,7 +8,7 @@ import Order from "../Pages/Order/Order/Order";
 import Contacts from "../Components/Contacts/Contacts";
 import Login from "../Pages/AuthenticationForm/Login/Login";
 import Register from "../Pages/AuthenticationForm/Register/Register";
-import PrivateRoutes from "./PrivateRoutes";
+
 
 
 
@@ -27,7 +27,7 @@ export const Router = createBrowserRouter([
         },
         {
           path: "order/:category",
-          element: <PrivateRoutes><Order></Order></PrivateRoutes> ,
+          element:  <Order></Order> ,
         },
         {
            path: "Contact",
