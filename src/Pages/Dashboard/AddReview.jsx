@@ -45,6 +45,7 @@ const AddReview = () => {
 
     return (
         <div>
+             {/* tiitle section */}
             <section>
                 <SectionTittle subHeading="Sharing is Caring!!!" heading="Give a Review" />
             </section>
@@ -60,7 +61,8 @@ const AddReview = () => {
                         required
                     />
                 </div>
-
+ 
+              {/* form section */}
                 <form onSubmit={handleSubmit} className="rounded-box w-full max-w-md mx-auto p-4 bg-white shadow-md">
                     <label className="label">
                         <span className="label-text">Name</span>
