@@ -12,6 +12,7 @@ import PrivaterRoutes from "./PrivateRoutes";
 import Dashboard from "../LayOut/Dashboard";
 import Cart from "../Pages/Dashboard/cart";
 import AddReview from "../Pages/Dashboard/AddReview";
+import AllUser from "../Pages/Dashboard/AllUser";
 
 
 
@@ -58,6 +59,10 @@ export const Router = createBrowserRouter([
       {
         path: 'reviewsAdd',
         element: <AddReview></AddReview>,
+      },
+      {
+        path: 'allUsers',
+        element: <AllUser></AllUser>,
       }
      ]
   },
