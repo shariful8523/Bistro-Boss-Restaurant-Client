@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, {  useContext } from 'react';
 import img from '../../../assets/others/ar.png';
 import { FaFacebookF, FaGoogle, FaGithub } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
@@ -7,6 +7,7 @@ import { AuthContext } from '../../../provider/AuthProvider';
 import Swal from 'sweetalert2';
 import { updateProfile } from 'firebase/auth';
 import { Helmet } from 'react-helmet-async';
+import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 
 
 
@@ -16,6 +17,7 @@ const Register = () => {
 
     const { createUser, logOutUser, setJustRegister, googleLogIn } = useContext(AuthContext);
     const navigate = useNavigate();
+    const axiosPublic = useAxiosPublic();
 
     const handelRegister = (e) => {
         e.preventDefault();
@@ -42,25 +44,40 @@ const Register = () => {
                     .then(() => {
 
 
-                        Swal.fire({
-                            title: 'Success!',
-                            text: 'Registration Successfully',
-                            icon: 'success',
-                            confirmButtonText: 'Cool'
-                        });
+                        // create user eatery in the database 
+                        const userInfo = {
+                            name: name,
+                            email: email,
+                            photoURL: photo,
+                        }
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+
+                                    Swal.fire({
+                                        title: 'Success!',
+                                        text: 'Registration Successfully',
+                                        icon: 'success',
+                                        confirmButtonText: 'Cool'
+                                    });
 
 
-                        setJustRegister(true);
+                                    setJustRegister(true);
 
-                        logOutUser()
-                            .then(() => {
+                                    logOutUser()
+                                        .then(() => {
 
+                                        })
+
+
+                                    e.target.reset();
+
+                                    navigate('/login')
+
+                                }
                             })
 
 
-                        e.target.reset();
-
-                        navigate('/login')
 
 
                     })
@@ -76,8 +93,8 @@ const Register = () => {
     const handeleGoogle = () => {
         googleLogIn()
 
-            .then((result) => {
-                console.log(result)
+            .then(() => {
+
                 Swal.fire({
                     title: 'Success!',
                     text: 'Login  Successfully',
