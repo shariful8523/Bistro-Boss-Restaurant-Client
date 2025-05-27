@@ -5,7 +5,7 @@ import { createContext, useEffect, useState } from "react";
 import { GoogleAuthProvider } from "firebase/auth";
 
 
-export  const AuthContext = createContext(null);
+export const AuthContext = createContext(null);
 
 
 const auth = getAuth(app);
@@ -33,10 +33,14 @@ const AuthProvider = ({ children }) => {
     const googleLogIn = () => {
         setLoading(true);
         return signInWithPopup(auth, provider)
+            .then((result) => {
+                const user = result.user; 
+                return user;
+            })
+            
+    };
 
-    }
 
-    
 
     const logOutUser = () => {
         setLoading(true);

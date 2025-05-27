@@ -22,9 +22,9 @@ const GoogleLogin = () => {
                 }
 
                 axiosPublic.post('/users', userInfo)
-                    .then(res => {
+                    .then(() => {
 
-                        console.log(res)
+                     
                         Swal.fire({
                             title: 'Success!',
                             text: 'Login  Successfully',
