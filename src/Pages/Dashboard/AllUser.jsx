@@ -16,35 +16,45 @@ const AllUser = () => {
         }
     });
 
-
-     const handelDelete = user => {
-            Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!"
-            }).then((result) => {
-                if (result.isConfirmed) {
-    
-    
-                    useAxiosSecure.delete(`/carts/${user._id}`)
-                        .then(res => {
-                            if (res.data.deletedCount > 0) {
-                                Swal.fire({
-                                    title: "Deleted!",
-                                    text: "Your file has been deleted.",
-                                    icon: "success"
-                                });
-    
-                                refetch();
-                            }
-                        })
+    const handelRole = user => {
+        axiosSecure.patch(`/users/admin/${user._id}`)
+            .then(res => {
+                if (res.data.modifiedCount > 0) {
+                    refetch();
+                    Swal.fire({
+                        title: "Success!",
+                        text: `${user.name} is now an Admin`,
+                        icon: "success"
+                    });
                 }
             });
-        }
+    };
+
+    const handelDelete = user => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/users/${user._id}`)
+                    .then(res => {
+                        if (res.data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "User has been deleted.",
+                                icon: "success"
+                            });
+                            refetch();
+                        }
+                    });
+            }
+        });
+    };
 
     return (
         <div className="bg-gray-50 min-h-screen">
@@ -61,7 +71,7 @@ const AllUser = () => {
                     <table className="w-full bg-white rounded-lg overflow-hidden">
                         <thead>
                             <tr className="bg-[#D1A054] text-white text-left">
-                                <th className="p-4"></th>
+                                <th className="p-4">#</th>
                                 <th className="p-4">NAME</th>
                                 <th className="p-4">EMAIL</th>
                                 <th className="p-4">ROLE</th>
@@ -76,12 +86,16 @@ const AllUser = () => {
                                         <td className="p-4">{item.name}</td>
                                         <td className="p-4">{item.email}</td>
                                         <td className="p-4">
-                                            <button className="bg-[#D1A054] text-white p-2 rounded">
-                                                <FaUsers />
-                                            </button>
+                                            {
+                                                item.role === 'admin' ? 'Admin' : (
+                                                    <button onClick={() => handelRole(item)} className="bg-[#D1A054] text-white p-2 rounded">
+                                                        <FaUsers />
+                                                    </button>
+                                                )
+                                            }
                                         </td>
                                         <td className="p-4">
-                                            <button onClick={handelDelete} className="bg-red-600 text-white p-2 rounded">
+                                            <button onClick={() => handelDelete(item)} className="bg-red-600 text-white p-2 rounded">
                                                 <FaTrash />
                                             </button>
                                         </td>
