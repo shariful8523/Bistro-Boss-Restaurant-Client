@@ -6,11 +6,12 @@ import Img1 from '../../../assets/others/authentication.png';
 import { AuthContext } from '../../../provider/AuthProvider';
 import Swal from 'sweetalert2';
 import { Helmet } from 'react-helmet-async';
+import GoogleLogin from '../GoogleLogin/GoogleLogin';
 
 const Login = () => {
 
 
-    const { loginUser, setJustRegister, googleLogIn } = useContext(AuthContext);
+    const { loginUser, setJustRegister } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -42,30 +43,7 @@ const Login = () => {
 
     }
 
-    const handeleGoogle = () => {
-        googleLogIn()
-
-            .then((result) => {
-                console.log(result)
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'Login  Successfully',
-                    icon: 'success',
-                    confirmButtonText: 'Cool'
-                });
-
-                navigate('/')
-            })
-            .catch((error) => {
-                console.log(error)
-                Swal.fire({
-                    title: 'Error!',
-                    text: error.message,
-                    icon: 'error',
-                    confirmButtonText: 'Okay'
-                });
-            })
-    }
+    
 
 
 
@@ -126,12 +104,8 @@ const Login = () => {
 
                         {/* Social Signup */}
                         <div className="divider">Or sign up with</div>
-                        <div className="flex justify-center space-x-4 text-xl">
-                            <button className="btn btn-outline rounded-full p-3"><FaFacebookF /></button>
-                            <button onClick={handeleGoogle} className="btn btn-outline rounded-full p-3"><FaGoogle /></button>
-                            <button className="btn btn-outline rounded-full p-3"><FaGithub /></button>
-                        </div>
                     </form>
+                    <GoogleLogin></GoogleLogin>
                 </div>
 
             </div>

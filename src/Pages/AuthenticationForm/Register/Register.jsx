@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import { updateProfile } from 'firebase/auth';
 import { Helmet } from 'react-helmet-async';
 import useAxiosPublic from '../../../Hooks/useAxiosPublic';
+import GoogleLogin from '../GoogleLogin/GoogleLogin';
 
 
 
@@ -15,7 +16,7 @@ import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 
 const Register = () => {
 
-    const { createUser, logOutUser, setJustRegister, googleLogIn } = useContext(AuthContext);
+    const { createUser, logOutUser, setJustRegister } = useContext(AuthContext);
     const navigate = useNavigate();
     const axiosPublic = useAxiosPublic();
 
@@ -90,30 +91,7 @@ const Register = () => {
     };
 
 
-    const handeleGoogle = () => {
-        googleLogIn()
-
-            .then(() => {
-
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'Login  Successfully',
-                    icon: 'success',
-                    confirmButtonText: 'Cool'
-                });
-
-                navigate('/')
-            })
-            .catch((error) => {
-                console.log(error)
-                Swal.fire({
-                    title: 'Error!',
-                    text: error.message,
-                    icon: 'error',
-                    confirmButtonText: 'Okay'
-                });
-            })
-    }
+    
 
 
     return (
@@ -180,12 +158,9 @@ const Register = () => {
 
                         {/* Social Signup */}
                         <div className="divider">Or sign up with</div>
-                        <div className="flex justify-center space-x-4 text-xl ">
-                            <button className="btn btn-outline rounded-full p-3"><FaFacebookF /></button>
-                            <button onClick={handeleGoogle} className="btn btn-outline rounded-full p-3"><FaGoogle /></button>
-                            <button className="btn btn-outline rounded-full p-3"><FaGithub /></button>
-                        </div>
+                        
                     </form>
+                    <GoogleLogin></GoogleLogin>
                 </div>
 
                 {/* Right: Image */}
