@@ -11,9 +11,9 @@ import useCart from '../../../Hooks/useCart';
 const Navbar = () => {
   const { user, logOutUser, justRegister } = useContext(AuthContext);
   const [dropdown, setDropdown] = useState(false);
-
+  
   const [cart] = useCart();
-
+  
   useEffect(() => {
     setDropdown(false);
   }, [user]);

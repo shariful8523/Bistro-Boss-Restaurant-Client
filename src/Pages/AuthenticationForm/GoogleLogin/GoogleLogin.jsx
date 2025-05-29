@@ -7,57 +7,44 @@ import { axiosPublic } from "../../../Hooks/useAxiosPublic";
 
 const GoogleLogin = () => {
 
-    const { googleLogIn } = useContext(AuthContext)
+    const { googleLogIn } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    const handleeGoogle = () => {
-
+    const handleGoogle = () => {
         googleLogIn()
-
             .then((result) => {
+                const user = result.user;
                 const userInfo = {
-                    email: result.user?.email,
-                    name: result.user?.displayName,
-                    photoURL: result.user?.photoURL,
-                }
-
+                    email: user.email,
+                    name: user.displayName,
+                    photoURL: user.photoURL,
+                };
+               
                 axiosPublic.post('/users', userInfo)
                     .then(() => {
-
-                     
                         Swal.fire({
                             title: 'Success!',
-                            text: 'Login  Successfully',
+                            text: 'Login Successfully',
                             icon: 'success',
                             confirmButtonText: 'Cool'
                         });
-                        navigate('/')
-
-
-                    })
-
-            })
-            .catch((error) => {
-                console.log(error)
-                Swal.fire({
-                    title: 'Error!',
-                    text: error.message,
-                    icon: 'error',
-                    confirmButtonText: 'Okay'
-                });
+                        navigate('/');
+                    });
             })
 
-    }
+    
 
-    return (
-        <div>
-            <div className="flex justify-center space-x-4 text-xl ">
-                <button className="btn btn-outline rounded-full p-3"><FaFacebookF /></button>
-                <button onClick={handleeGoogle} className="btn btn-outline rounded-full p-3"><FaGoogle /></button>
-                <button className="btn btn-outline rounded-full p-3"><FaGithub /></button>
-            </div>
+};
+
+return (
+    <div>
+        <div className="flex justify-center space-x-4 text-xl">
+            <button className="btn btn-outline rounded-full p-3"><FaFacebookF /></button>
+            <button onClick={handleGoogle} className="btn btn-outline rounded-full p-3"><FaGoogle /></button>
+            <button className="btn btn-outline rounded-full p-3"><FaGithub /></button>
         </div>
-    );
+    </div>
+);
 };
 
 export default GoogleLogin;
