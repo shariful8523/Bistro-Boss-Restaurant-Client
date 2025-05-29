@@ -8,6 +8,7 @@ import { IoIosMail } from 'react-icons/io';
 import { RiShoppingBag4Fill } from 'react-icons/ri';
 import { BiSolidFoodMenu } from "react-icons/bi";
 import { TfiMenuAlt } from "react-icons/tfi";
+import useAdmin from '../Hooks/useAdmin';
 
 
 
@@ -18,7 +19,7 @@ import { TfiMenuAlt } from "react-icons/tfi";
 
 const Dashboard = () => {
 
-    const isAdmin = true;
+    const [isAdmin] = useAdmin();
     return (
         <div className='flex gap-20 mt-20'>
 
