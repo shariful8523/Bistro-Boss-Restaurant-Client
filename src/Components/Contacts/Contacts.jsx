@@ -6,10 +6,37 @@ import { FaPhoneVolume } from "react-icons/fa6";
 import { MdAccessTime } from "react-icons/md";
 import { FaTelegramPlane } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
+import ReCAPTCHA from "react-google-recaptcha";
+import { useState } from "react";
 
 
 
 const Contacts = () => {
+
+    const [verified , setVerified]=useState(false);
+
+
+
+    // Recaptcha function
+
+    function onChange(value) {
+      if(value){
+        setVerified(true);
+      }
+    }
+
+
+    const handelsubmit =(e) => {
+        e.preventDefault();
+
+        if(!verified){
+
+            // alert
+
+            return;
+        }
+    }
+
 
     return (
         <div className="mt-5 mb-15   ">
@@ -85,7 +112,7 @@ const Contacts = () => {
 
             <div className="mt-20">
                 <div className="max-w-4xl mx-auto p-10 bg-gray-100">
-                    <form className="space-y-6">
+                    <form onSubmit={handelsubmit} className="space-y-6">
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
@@ -128,7 +155,11 @@ const Contacts = () => {
 
 
                         <div className="border border-gray-300 p-2 inline-block rounded-md">
-                            <p className="text-sm text-gray-500">[ reCAPTCHA goes here ]</p>
+                           
+                            <ReCAPTCHA className="text-sm text-gray-500"
+                                sitekey={import.meta.env.VITE_RECAPTCHA_client_site_key}
+                                onChange={onChange}
+                            />
                         </div>
 
 
