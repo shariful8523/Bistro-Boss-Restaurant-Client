@@ -1,13 +1,33 @@
 import SectionTittle from '../../Components/SectionTittle';
 import { useForm } from 'react-hook-form';
 import { FaUtensils } from 'react-icons/fa';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
+
+const Img_Hosting_key = import.meta.env.VITE_IMGBB_KEY;
+const ImgBB_Hosting_API = `https://api.imgbb.com/1/upload?key=${Img_Hosting_key}`
 
 const AddItem = () => {
+    const axiosPublic = useAxiosPublic();
+
     const { register, handleSubmit } = useForm();
-    const onSubmit = data => console.log(data);
+
+    const onSubmit = async (data) =>{ 
+        console.log(data)
+
+        const imageFile = {image: data.image[0] }
+
+        const res = await axiosPublic.post(ImgBB_Hosting_API, imageFile, {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        });
+
+        console.log(res.data);
+        
+    };
 
 
-    console.log(onSubmit, handleSubmit)
+    
     return (
         <div>
 
@@ -18,7 +38,7 @@ const AddItem = () => {
             <div className="bg-gray-100 p-8 max-w-3xl mx-auto rounded mb-10">
 
 
-                <form className="space-y-6">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     {/* Recipe name */}
                     <div>
                         <label className="block font-semibold mb-1">Recipe name*</label>
@@ -85,7 +105,7 @@ const AddItem = () => {
                     {/* Submit Button */}
                     <button
                         type="submit"
-                        className="btn bg-yellow-600 text-white hover:bg-yellow-700 transition"
+                        className="btn bg-[#835D23FF] text-white hover:bg-yellow-700 transition"
                     >
                         Add Item <FaUtensils />
                     </button>
