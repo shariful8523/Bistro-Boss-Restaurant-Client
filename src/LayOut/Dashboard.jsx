@@ -34,7 +34,8 @@ const Dashboard = () => {
 
                             <ul className='menu'>
                                 <li><NavLink ><IoHomeSharp /> ADMIN HOME</NavLink></li>
-                                <li><NavLink ><FaUtensils /> ADD ITEMS</NavLink></li>
+                                <li><NavLink to='/dashboard/addItem' className={({ isActive }) =>
+                                    isActive ? 'text-white font-bold' : 'text-black'}  ><FaUtensils /> ADD ITEMS</NavLink></li>
                                 <li><NavLink ><TfiMenuAlt /> MANAGE ITEM</NavLink></li>
                                 <li><NavLink ><BiSolidFoodMenu />MANAGE BOOKING</NavLink></li>
                                 <li><NavLink to='/dashboard/allUsers'

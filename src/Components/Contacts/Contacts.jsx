@@ -8,30 +8,36 @@ import { FaTelegramPlane } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 
 
 const Contacts = () => {
 
-    const [verified , setVerified]=useState(false);
+    const [verified, setVerified] = useState(false);
 
 
 
     // Recaptcha function
 
     function onChange(value) {
-      if(value){
-        setVerified(true);
-      }
+        if (value) {
+            setVerified(true);
+        }
     }
 
 
-    const handelsubmit =(e) => {
+    const handelsubmit = (e) => {
         e.preventDefault();
 
-        if(!verified){
+        if (!verified) {
 
             // alert
+            Swal.fire({
+                title: "success!",
+                text: "Your captcha  verified success.",
+                icon: "success"
+            });
 
             return;
         }
@@ -155,7 +161,7 @@ const Contacts = () => {
 
 
                         <div className="border border-gray-300 p-2 inline-block rounded-md">
-                           
+
                             <ReCAPTCHA className="text-sm text-gray-500"
                                 sitekey={import.meta.env.VITE_RECAPTCHA_client_site_key}
                                 onChange={onChange}
