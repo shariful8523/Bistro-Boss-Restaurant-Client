@@ -2,32 +2,59 @@ import SectionTittle from '../../Components/SectionTittle';
 import { useForm } from 'react-hook-form';
 import { FaUtensils } from 'react-icons/fa';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 const Img_Hosting_key = import.meta.env.VITE_IMGBB_KEY;
 const ImgBB_Hosting_API = `https://api.imgbb.com/1/upload?key=${Img_Hosting_key}`
 
 const AddItem = () => {
     const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
 
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit,reset } = useForm();
 
-    const onSubmit = async (data) =>{ 
+    const onSubmit = async (data) => {
         console.log(data)
-
-        const imageFile = {image: data.image[0] }
-
+        // image upload to ImgBB and get the url
+        const imageFile = { image: data.image[0] }
         const res = await axiosPublic.post(ImgBB_Hosting_API, imageFile, {
             headers: {
                 'content-type': 'multipart/form-data'
             }
         });
 
+        if (res.data.success) {
+            // now send the Menu Item in the server with Image url
+            const menuItem = {
+                name: data.name,
+                category: data.category,
+                price: parseFloat(data.price),
+                recipe: data.recipe,
+                image: res.data.data.display_url
+
+            }
+
+            const menuRes = await axiosSecure.post('/menu', menuItem);
+
+            if (menuRes.data.insertedId) {
+                reset();
+                Swal.fire({
+                    title: "Success!",
+                    text: `${data.name} has been Added.`,
+                    icon: "success"
+                });
+                
+            }
+
+        }
+
         console.log(res.data);
-        
+
     };
 
 
-    
+
     return (
         <div>
 
@@ -61,7 +88,7 @@ const AddItem = () => {
                                 className="select select-bordered w-full"
                             >
                                 <option value="" disabled>Select a Category</option>
-                                <option value="salad">Salad</option>
+                                <option value="salad">salad</option>
                                 <option value="pizza">Pizza</option>
                                 <option value="soup">Soup</option>
                                 <option value="dessert">Dessert</option>
