@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SectionTittle from '../../Components/SectionTittle';
 import { useForm } from 'react-hook-form';
 import { FaUtensils } from 'react-icons/fa';
@@ -13,51 +13,64 @@ const ImgBB_Hosting_API = `https://api.imgbb.com/1/upload?key=${Img_Hosting_key}
 
 
 const UpdateItem = () => {
-    const {name, recipe, price, category, _id } = useLoaderData();
+    const { name, recipe, price, category, _id } = useLoaderData();
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
+    const [loading, setLoading] = useState(false);
 
 
 
 
-const { register, handleSubmit,reset } = useForm();
+    const { register, handleSubmit, reset } = useForm();
 
     const onSubmit = async (data) => {
-      
-        // image upload to ImgBB and get the url
-        const imageFile = { image: data.image[0] }
-        const res = await axiosPublic.post(ImgBB_Hosting_API, imageFile, {
-            headers: {
-                'content-type': 'multipart/form-data'
+
+        setLoading(true);
+
+        try {
+            // image upload to ImgBB and get the url
+            const imageFile = { image: data.image[0] }
+            const res = await axiosPublic.post(ImgBB_Hosting_API, imageFile, {
+                headers: {
+                    'content-type': 'multipart/form-data'
+                }
+            });
+
+            if (res.data.success) {
+                // now send the Menu Item in the server with Image url
+                const menuItem = {
+                    name: data.name,
+                    category: data.category,
+                    price: parseFloat(data.price),
+                    recipe: data.recipe,
+                    image: res.data.data.display_url
+
+                }
+
+                const menuRes = await axiosSecure.patch(`/menu/${_id}`, menuItem);
+
+                if (menuRes.data.modifiedCount > 0) {
+                    reset();
+                    Swal.fire({
+                        title: "Success!",
+                        text: `${data.name} has been Updated.`,
+                        icon: "success"
+                    });
+
+                }
+
             }
-        });
 
-        if (res.data.success) {
-            // now send the Menu Item in the server with Image url
-            const menuItem = {
-                name: data.name,
-                category: data.category,
-                price: parseFloat(data.price),
-                recipe: data.recipe,
-                image: res.data.data.display_url
-
-            }
-
-            const menuRes = await axiosSecure.patch(`/menu/${_id}`, menuItem);
-
-            if (menuRes.data.modifiedCount > 0) {
-                reset();
-                Swal.fire({
-                    title: "Success!",
-                    text: `${data.name} has been Updated.`,
-                    icon: "success"
-                });
-                
-            }
-
+        } catch {
+            Swal.fire({
+                title: "Error!",
+                text: "Something went wrong.",
+                icon: "error"
+            });
+        } finally {
+            setLoading(false);
         }
 
-       
 
     };
 
@@ -130,8 +143,8 @@ const { register, handleSubmit,reset } = useForm();
                             className="textarea textarea-bordered w-full h-24"
                         ></textarea>
                     </div>
-                     
-                     {/* File Input */}
+
+                    {/* File Input */}
                     <div>
                         <label className="block font-semibold mb-1">Upload Image*</label>
                         <input
@@ -146,8 +159,20 @@ const { register, handleSubmit,reset } = useForm();
                     <button
                         type="submit"
                         className="btn text-center  bg-[#835D23FF] text-white hover:bg-yellow-700 transition"
+                        disabled={loading}
                     >
-                        Update Item <FaUtensils />
+                        {loading ? (
+                            <>
+                                <span className="loading loading-spinner loading-sm mr-2"></span>
+                                Updating...
+                            </>
+                        )
+                            :
+                            (
+                                <>
+                                    Update Item <FaUtensils />
+                                </>
+                            )}
                     </button>
                 </form>
             </div>
