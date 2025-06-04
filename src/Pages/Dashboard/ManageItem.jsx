@@ -20,7 +20,6 @@ const ManageItem = () => {
             confirmButtonText: "Yes, delete it!"
         }).then(async (result) => {
             if (result.isConfirmed) {
-
                 const res = await axiosSecure.delete(`/menu/${item._id}`);
                 if (res.data.deletedCount > 0) {
                     refetch();
@@ -33,12 +32,12 @@ const ManageItem = () => {
 
             }
         });
+
+
     };
 
-    const handleRole = (item) => {
-        console.log("Making item Admin or Edit:", item);
-        // Role update or Edit logic goes here
-    };
+
+
 
     return (
         <div className="min-h-screen">
@@ -83,7 +82,7 @@ const ManageItem = () => {
                                         <td className="p-4">${item.price}</td>
                                         <td className="p-4">
                                             <Link to={`/dashboard/updateItem/${item._id}`} >
-                                                <button onClick={() => handleRole(item)} className="bg-[#D1A054] text-white p-2 rounded">
+                                                <button className="bg-[#D1A054] text-white p-2 rounded">
                                                     <FaEdit />
                                                 </button>
                                             </Link>

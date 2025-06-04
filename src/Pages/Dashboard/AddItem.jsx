@@ -15,7 +15,7 @@ const AddItem = () => {
     const { register, handleSubmit,reset } = useForm();
 
     const onSubmit = async (data) => {
-        console.log(data)
+      
         // image upload to ImgBB and get the url
         const imageFile = { image: data.image[0] }
         const res = await axiosPublic.post(ImgBB_Hosting_API, imageFile, {
@@ -49,7 +49,7 @@ const AddItem = () => {
 
         }
 
-        console.log(res.data);
+       
 
     };
 
