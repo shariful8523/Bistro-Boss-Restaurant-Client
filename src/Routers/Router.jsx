@@ -17,6 +17,7 @@ import AddItem from "../Pages/Dashboard/AddItem";
 import AdminRoute from "./AdminRoute"
 import ManageItem from "../Pages/Dashboard/ManageItem";
 import UpdateItem from "../Pages/Dashboard/UpdateItem";
+import Payment from "../Pages/Dashboard/Payment";
 
 
 
@@ -64,6 +65,10 @@ export const Router = createBrowserRouter([
       {
         path: 'reviewsAdd',
         element: <AddReview></AddReview>,
+      },
+      {
+          path: 'payment',
+          element: <Payment></Payment>,
       },
 
       // Admin routers

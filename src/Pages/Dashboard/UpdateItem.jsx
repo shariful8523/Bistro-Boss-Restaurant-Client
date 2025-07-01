@@ -167,12 +167,14 @@ const UpdateItem = () => {
                                 Updating...
                             </>
                         )
-                            :
-                            (
+                        :
+
+                        (
                                 <>
                                     Update Item <FaUtensils />
                                 </>
-                            )}
+                        )
+                        }
                     </button>
                 </form>
             </div>
