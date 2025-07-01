@@ -77,7 +77,8 @@ const Dashboard = () => {
 
                                 <li><NavLink ><FaRegCalendarAlt /> RESERVATION</NavLink></li>
 
-                                <li><NavLink ><FaWallet /> PAYMENT HISTORY</NavLink></li>
+                                <li><NavLink to="/dashboard/paymentHistory" className={({ isActive }) =>
+                                        isActive ? 'text-white font-bold' : 'text-black'} ><FaWallet /> PAYMENT HISTORY</NavLink></li>
 
                                 <li><NavLink to="/dashboard/cart"
                                     className={({ isActive }) =>
