@@ -7,10 +7,13 @@ import { ImExit } from 'react-icons/im';
 import { VscAccount } from 'react-icons/vsc';
 import { FaShoppingCart } from 'react-icons/fa';
 import useCart from '../../../Hooks/useCart';
+import useAdmin from '../../../Hooks/useAdmin';
 
 const Navbar = () => {
   const { user, logOutUser, justRegister } = useContext(AuthContext);
+  const [isAdmin] = useAdmin();
   const [dropdown, setDropdown] = useState(false);
+
   
   const [cart] = useCart();
   
@@ -39,7 +42,12 @@ const Navbar = () => {
       <li><Link to="/">Home</Link></li>
       <li><Link to="/menu">Our Menu</Link></li>
       <li><Link to="/order/salad">Order Food</Link></li>
-      <li><Link to="/dashboard">DashBoard</Link></li>
+      {
+         user && isAdmin && <li><Link to="/dashboard/adminHome">Dashboard</Link></li>
+      }
+      {
+        user && !isAdmin && <li><Link to="/dashboard/userHome">Dashboard</Link></li>
+      }
       <li><Link to="/contact">Contact Us</Link></li>
 
       <li><Link to="/dashboard/cart" >

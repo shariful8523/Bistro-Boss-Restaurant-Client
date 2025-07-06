@@ -33,7 +33,8 @@ const Dashboard = () => {
                         <>
 
                             <ul className='menu'>
-                                <li><NavLink ><IoHomeSharp /> ADMIN HOME</NavLink></li>
+                                <li><NavLink to="/dashboard/adminHome" className={({ isActive }) =>
+                                    isActive ? 'text-white font-bold' : 'text-black'}><IoHomeSharp /> ADMIN HOME</NavLink></li>
                                 <li><NavLink to='/dashboard/addItem' className={({ isActive }) =>
                                     isActive ? 'text-white font-bold' : 'text-black'}  ><FaUtensils /> ADD ITEMS</NavLink></li>
                                 <li><NavLink to='/dashboard/manageItem' className={({ isActive }) =>
@@ -50,7 +51,7 @@ const Dashboard = () => {
 
                             <ul className='menu'>
 
-                                <li><NavLink to="/"><IoHomeSharp /> HOME</NavLink></li>
+                                <li><NavLink to="/" ><IoHomeSharp /> HOME</NavLink></li>
 
 
                                 <li><NavLink to="/menu"><GiHamburgerMenu /> MENU</NavLink></li>
@@ -73,12 +74,13 @@ const Dashboard = () => {
 
                             <ul className='menu'>
 
-                                <li><NavLink ><IoHomeSharp /> USER HOME</NavLink></li>
+                                <li><NavLink to="/dashboard/userHome" className={({ isActive }) =>
+                                    isActive ? 'text-white font-bold' : 'text-black'}  ><IoHomeSharp /> USER HOME</NavLink></li>
 
                                 <li><NavLink ><FaRegCalendarAlt /> RESERVATION</NavLink></li>
 
                                 <li><NavLink to="/dashboard/paymentHistory" className={({ isActive }) =>
-                                        isActive ? 'text-white font-bold' : 'text-black'} ><FaWallet /> PAYMENT HISTORY</NavLink></li>
+                                    isActive ? 'text-white font-bold' : 'text-black'} ><FaWallet /> PAYMENT HISTORY</NavLink></li>
 
                                 <li><NavLink to="/dashboard/cart"
                                     className={({ isActive }) =>

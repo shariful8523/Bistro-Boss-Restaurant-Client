@@ -8,7 +8,7 @@ const PaymentHistory = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
-  const { data: payments = [], isLoading } = useQuery({
+  const { data: payments = [] } = useQuery({
     queryKey: ["payments", user?.email],
     enabled: !!user?.email,
     queryFn: async () => {
@@ -17,13 +17,7 @@ const PaymentHistory = () => {
     },
   });
 
-  if (isLoading) {
-    return (
-      <div className="text-center py-20">
-        <span className="loading loading-spinner text-yellow-600 text-3xl"></span>
-      </div>
-    );
-  }
+  
 
   return (
     <div className="w-full px-4 md:px-10 py-10 overflow-hidden">
