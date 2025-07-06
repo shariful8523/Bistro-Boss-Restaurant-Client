@@ -177,7 +177,7 @@ const AdminHome = () => {
 
                 </div>
 
-                <div className='w-1/2'>
+                <div className='w-1/2 -mt-26'>
 
 
                     <PieChart width={400} height={400}>
@@ -195,7 +195,7 @@ const AdminHome = () => {
                                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                             ))}
                         </Pie>
-                        <Legend></Legend>
+                        <Legend ></Legend>
                         <Tooltip />
                     </PieChart>
                 </div>
