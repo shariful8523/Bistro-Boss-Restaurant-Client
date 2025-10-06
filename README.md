@@ -1,100 +1,84 @@
+# 🍽️ Bistro Boss — Modern Restaurant Web Application
 
-🍽️ Bistro Boss — Modern Restaurant Web Application
+**Live Demo:** [Bistro Boss Live](https://bistro-boss-restorent-cb0b2.web.app/)
 
-Live Demo: https://bistro-boss-restorent-cb0b2.web.app/
+Bistro Boss is a sleek, responsive restaurant web application designed to provide a seamless experience for browsing menus, placing orders, and making secure online payments.  
+With role-based dashboards, analytics, and dynamic features, it’s a complete solution for modern restaurant management and online food ordering.
 
-Bistro Boss is a modern, responsive restaurant web application designed for browsing menus, placing orders, and handling secure online payments. Built with a production-ready frontend stack and hosted on Firebase, it provides role-based dashboards, analytics, and a smooth checkout flow.
+---
 
-✨ Highlights
+## ✨ Key Features
 
-Dynamic menu browsing with category filters
+- 🍕 **Dynamic Menu System** – Browse food categories and detailed items effortlessly.  
+- 🛒 **Shopping Cart & Stripe Payment** – Secure checkout flow integrated with Stripe.  
+- 🔐 **Firebase Authentication** – Supports email/password login and Google Sign-In.  
+- 🧑‍💼 **Role-Based Dashboards** – Separate admin and user panels for management and ordering.  
+- 📊 **Interactive Analytics** – Data visualizations using Recharts.  
+- ⚡ **Efficient Data Fetching** – Powered by TanStack Query (react-query) for fast and cached API requests.  
+- 💬 **Interactive Alerts** – SweetAlert2 notifications for better user experience.  
+- 📱 **Fully Responsive Design** – Optimized for desktops, tablets, and mobile devices.  
 
-Shopping cart + secure Stripe checkout
+---
 
-Firebase Authentication (Email / Google)
+## 💻 Demo Accounts (For Testing)
 
-Role-based admin & user dashboards
 
-Data visualizations with Recharts
 
-Fast, cache-friendly data fetching via TanStack Query (react-query)
+### Admin Account
+- **Email:** `mdsharifulislam88523@gmail.com`  
+- **Password:** `Admin123`  
 
-Responsive UI with Tailwind CSS + DaisyUI
+### User Account
+- **Email:** `mdsharifulislam85233@gmail.com`  
+- **Password:** `sharifulislam`  
 
-Polished UX: Lottie animations, SweetAlert2 notifications
 
-🎯 Demo (How to test)
 
-To quickly review the app on the live deployment, use the demo accounts below. These accounts are created solely for public testing and do not expose any sensitive or production data. Do NOT publish real credentials.
+---
 
-Demo Admin (for interface & management testing)
+## 💳 Payment Testing
 
-Email: demo.admin@bistroboss.test
+Stripe integration is available in **test mode**. Use the following test card to simulate transactions:
 
-Password: DemoAdmin123!
+- **Card Number:** `4242 4242 4242 4242`  
+- **Expiry Date:** Any future date (e.g., `12/34`)  
+- **CVC:** `123`
 
-Demo User (for ordering flow)
+---
 
-Email: demo.user@bistroboss.test
+## 🛠️ Technology Stack
 
-Password: DemoUser123!
+**Frontend & UI**
+- React 18  
+- React Router DOM 7  
+- Tailwind CSS + DaisyUI  
+- Lottie React & Swiper Carousel  
+- React Icons, React Tabs, React Hook Form  
 
-Steps
+**State & Data**
+- TanStack Query (react-query)  
+- Axios  
 
-Open the Live Demo: https://bistro-boss-restorent-cb0b2.web.app/
 
-Click Login / Sign In and enter one of the demo accounts above.
+**Backend & APIs**
+- Firebase Authentication & Hosting  
+- Stripe Payment Gateway  
 
-As Admin: access the Admin Dashboard to view/manage items, view analytics, and test admin-only flows.
+**Utilities & Dev Tools**
+- date-fns, match-sorter, sweetalert2, dotenv  
+- ESLint, Vite  
 
-As User: browse menu, add items to cart, and proceed to checkout to test the Stripe flow (see Payment Testing below).
+---
 
-⚠️ Security reminder: Never commit real admin credentials or secrets to a public README or repository. Use demo/test accounts only.
 
-💳 Payment Testing
 
-Stripe is integrated in test mode. Use the following test card to simulate payments:
+## 👨‍💻 Developer
 
-Card: 4242 4242 4242 4242
+**Md. Shariful Islam **  
+Passionate about building modern web applications with React, Firebase, and Tailwind CSS.  
 
-Expiry: any valid future date (e.g., 12/34)
+**Live Project:** [Bistro Boss](https://bistro-boss-restorent-cb0b2.web.app/)
 
-CVC: 123
 
-🛠️ Technology Stack
 
-Frontend & UI
-
-React 18
-
-Vite
-
-React Router DOM
-
-Tailwind CSS + DaisyUI
-
-Lottie React, Swiper, React Icons, React Tabs
-
-State & Data
-
-TanStack Query (react-query)
-
-Axios
-
-localforage (client-side caching)
-
-Auth, Hosting & Backend
-
-Firebase Authentication
-
-Firebase Hosting (live demo likely hosted here)
-
-Payments & Utilities
-
-Stripe (react-stripe-js & stripe-js)
-
-date-fns, match-sorter, sweetalert2, react-hook-form
-
-Dev Tools
-
-ESLint, vite, dotenv
+⭐ _Bistro Boss — crafted to deliver a modern, smooth, and delightful restaurant experience._
